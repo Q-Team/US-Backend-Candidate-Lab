@@ -9,6 +9,13 @@ using System.Collections.Generic;
 
 namespace CPB.Backend.Domain.Managers
 {
+    /// <summary>
+    /// Manager note entities. Allow:
+    ///     - Create
+    ///     - Update
+    ///     - Delete
+    ///     - Query
+    /// </summary>
     public partial class NoteManager : BaseManager<NoteDataAccess, Note, BaseQueryFilters>
     {
         #region -- Constructors --

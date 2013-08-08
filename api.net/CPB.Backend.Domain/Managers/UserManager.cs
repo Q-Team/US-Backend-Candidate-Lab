@@ -8,6 +8,13 @@ using CPB.Backend.DataAccess;
 
 namespace CPB.Backend.Domain.Managers
 {
+    /// <summary>
+    /// Manager user entities. Allow:
+    ///     - Create
+    ///     - Update
+    ///     - Delete
+    ///     - Query
+    /// </summary>
     public partial class UserManager : BaseManager<UserDataAccess, User, BaseQueryFilters>
     {
         #region -- Constructors --
