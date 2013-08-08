@@ -4,13 +4,12 @@ using Q.Domain;
 using Q.Common.DTO.Queries;
 using Q.DataAccess;
 using CPB.Backend.Common.Entities;
-using CPB.Backend.Common.Managers;
 using CPB.Backend.DataAccess;
 using System.Collections.Generic;
 
 namespace CPB.Backend.Domain.Managers
 {
-    public partial class NoteManager : BaseManager<NoteDataAccess, Note, BaseQueryFilters>, INoteManager
+    public partial class NoteManager : BaseManager<NoteDataAccess, Note, BaseQueryFilters>
     {
         #region -- Constructors --
 
@@ -42,6 +41,5 @@ namespace CPB.Backend.Domain.Managers
         #region -- Private Methods --
 
         #endregion
-        
     }
 }
