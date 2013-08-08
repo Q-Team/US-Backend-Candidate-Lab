@@ -21,6 +21,11 @@ namespace CPB.Backend.Web
     {
         #region -- User Methods --
 
+        /// <summary>
+        /// Create accounts. If the account data is OK, return account info.
+        /// </summary>
+        /// <param name="user">Account to update</param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public User CreateUser(User user)
@@ -33,18 +38,34 @@ namespace CPB.Backend.Web
             return result;
         }
 
+        /// <summary>
+        /// Update account data.
+        /// </summary>
+        /// <param name="user">Account to update</param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public User UpdateUser(User user)
         {
             User result = null;
-            using (UserManager manager = new UserManager())
+
+            /// Validte user and password, to update.
+            if (ValidateUser(user.UserName, user.Password))
             {
-                result = manager.Update(user);
+                using (UserManager manager = new UserManager())
+                {
+                    result = manager.Update(user);
+                }
             }
+
             return result;
         }
 
+        /// <summary>
+        /// Get account data by name.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public User GetUserByName(string userName)
@@ -57,6 +78,11 @@ namespace CPB.Backend.Web
             return result;
         }
 
+        /// <summary>
+        /// Get acccount data by id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public User GetUserById(int userId)
@@ -69,6 +95,12 @@ namespace CPB.Backend.Web
             return result;
         }
 
+        /// <summary>
+        /// Validate user and password. If OK, return account data.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public User ValidateUser(string userName, string password)
@@ -85,6 +117,11 @@ namespace CPB.Backend.Web
 
         #region -- Note Methods --
 
+        /// <summary>
+        /// Create note data.
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public Note CreateNote(Note note)
@@ -97,6 +134,12 @@ namespace CPB.Backend.Web
             return result;
         }
 
+        /// <summary>
+        /// Update note data.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="note"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public Note UpdateUser(int userId, Note note)
@@ -110,6 +153,12 @@ namespace CPB.Backend.Web
             return result;
         }
 
+        /// <summary>
+        /// Get note info by id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="noteId"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public Note GetNoteById(int userId, int noteId)
@@ -123,6 +172,12 @@ namespace CPB.Backend.Web
             return result;
         }
 
+        /// <summary>
+        /// Search for notes.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="searchValue"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public List<Note> SearchNotes(int userId, string searchValue)
@@ -135,6 +190,12 @@ namespace CPB.Backend.Web
             return result;
         }
 
+        /// <summary>
+        /// Delete note by id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="note"></param>
+        /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public bool DeleteNote(int userId, Note note)
