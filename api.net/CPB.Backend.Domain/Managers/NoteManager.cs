@@ -26,6 +26,11 @@ namespace CPB.Backend.Domain.Managers
 
         #region -- Public Methods --
 
+        public bool ValidateNoteOwner(int userId, int noteId)
+        {
+            return this.DAC.ValidateNoteOwner(userId, noteId);
+        }
+
         #endregion
 
         #region -- Private Methods --

@@ -37,6 +37,16 @@
   <query name="NoteDataAccess.QueryPart" partType="CUSTOMWHERE">
     <![CDATA[]]>
   </query>
-
+  <query name="UserDataAccess.ValidateNoteOwner">
+    <![CDATA[
+      SELECT BN.Id, 
+                    BN.Title, 
+                    BN.Description, 
+                    BN.UserId
+      FROM CPB_Note BN   
+      WHERE BN.Id = @noteId
+        AND BN.UserId = @userId 
+    ]]>
+  </query>
 
 </queries>

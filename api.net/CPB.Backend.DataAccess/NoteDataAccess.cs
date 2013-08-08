@@ -5,6 +5,9 @@ using Q.Common.DTO.Queries;
 using Q.Common.Configurations;
 using CPB.Backend.Common.Entities;
 using CPB.Backend.DataAccess.DBMappers;
+using Q.DataAccess.Utils;
+using System.Data.Common;
+using System.Data;
 
 namespace CPB.Backend.DataAccess
 {
@@ -39,6 +42,25 @@ namespace CPB.Backend.DataAccess
         #endregion
 
         #region -- Public Methods --
+
+        public bool ValidateNoteOwner(int userId, int noteId)
+        {
+            bool result = false;
+
+            string sqlText = DataAccessHelper.GetQuery("UserDataAccess.ValidateNoteOwner");
+            using (DbCommand command = base.GetSqlStringCommand(sqlText))
+            {
+                DBMapperHelper.AddInParameter<int>(this, command, "userId", userId);
+                DBMapperHelper.AddInParameter<int>(this, command, "noteId", noteId);
+                using (IDataReader reader = base.ExecuteReader(command))
+                {
+                    if (reader.Read())
+                        result = true;
+                }
+            }
+
+            return result;
+        }
 
         #endregion
 

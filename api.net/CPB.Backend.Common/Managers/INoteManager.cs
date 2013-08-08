@@ -9,5 +9,6 @@ namespace CPB.Backend.Common.Managers
 {
     public interface INoteManager : IBaseManager<Note, BaseQueryFilters>
     {
+        bool ValidateNoteOwner(int userId, int noteId);
     }
 }
