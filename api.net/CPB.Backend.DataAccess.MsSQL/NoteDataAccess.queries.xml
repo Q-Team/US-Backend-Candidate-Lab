@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<queries GenerateSelects="yes">
+  <query name="NoteDataAccess.Create">
+    <![CDATA[INSERT INTO CPB_Note ( Title,  Description,  UserId)
+                                VALUES (@Title, @Description, @UserId); SELECT SCOPE_IDENTITY();]]>
+  </query>
+  <query name="NoteDataAccess.Update">
+    <![CDATA[UPDATE CPB_Note
+                SET Title = @Title, Description = @Description, UserId = @UserId
+              WHERE Id = @Id]]>
+  </query>
+  <query name="NoteDataAccess.Delete">
+    <![CDATA[DELETE FROM CPB_Note WHERE Id = @Id]]>
+  </query>
+  <query name="NoteDataAccess.DeleteAll">
+    <![CDATA[DELETE FROM CPB_Note]]>
+  </query>
+  <query name="NoteDataAccess.QueryPart" partType="SELECT">
+    <![CDATA[SELECT BN.Id, 
+                    BN.Title, 
+                    BN.Description, 
+                    BN.UserId]]>
+  </query>
+  <query name="NoteDataAccess.QueryPart" partType="FROM">
+    <![CDATA[       FROM CPB_Note BN 
+              INNER JOIN CPB_User U ON U.Id = BN.UserId]]>
+  </query>
+  <query name="NoteDataAccess.QueryPart" partType="WHERE">
+    <![CDATA[      WHERE Id = @Id]]>
+  </query>
+  <query name="NoteDataAccess.QueryPart" partType="GETBYCODE">
+    <![CDATA[      WHERE BN.Id = @Code]]>
+  </query>
+  <query name="NoteDataAccess.QueryPart" partType="GETBYPARENTID">
+    <![CDATA[      WHERE BN.UserId = @ParentId]]>
+  </query>
+  <query name="NoteDataAccess.QueryPart" partType="CUSTOMWHERE">
+    <![CDATA[]]>
+  </query>
+
+
+</queries>

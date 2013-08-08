@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<queries GenerateSelects="yes">
+  <query name="UserDataAccess.Create">
+    <![CDATA[INSERT INTO CPB_User ( UserName,  Password,  FirstName,  LastName)
+                                VALUES (@UserName, @Password, @FirstName, @LastName); SELECT SCOPE_IDENTITY();]]>
+  </query>
+  <query name="UserDataAccess.Update">
+    <![CDATA[UPDATE CPB_User
+                SET Password = @Password, FirstName = @FirstName, LastName = @LastName
+              WHERE Id = @Id AND UserName = @UserName]]>
+  </query>
+  <query name="UserDataAccess.Delete">
+    <![CDATA[DELETE FROM CPB_User WHERE Id = @Id AND UserName = @UserName]]>
+  </query>
+  <query name="UserDataAccess.DeleteAll">
+    <![CDATA[DELETE FROM CPB_User]]>
+  </query>
+  <query name="UserDataAccess.QueryPart" partType="SELECT">
+    <![CDATA[SELECT BU.Id, 
+                    BU.UserName, 
+                    BU.Password, 
+                    BU.FirstName, 
+                    BU.LastName]]>
+  </query>
+  <query name="UserDataAccess.QueryPart" partType="FROM">
+    <![CDATA[       FROM CPB_User BU ]]>
+  </query>
+  <query name="UserDataAccess.QueryPart" partType="WHERE">
+    <![CDATA[      WHERE Id = @Id AND UserName = @UserName]]>
+  </query>
+  <query name="UserDataAccess.QueryPart" partType="GETBYCODE">
+    <![CDATA[      WHERE BU.COMPLETAR_LA_PK_LOGICA = @Code]]>
+  </query>
+  <query name="UserDataAccess.QueryPart" partType="GETBYPARENTID">
+    <![CDATA[      WHERE BU.COMPLETAR_LA_FK_LOGICA = @ParentId]]>
+  </query>
+  <query name="UserDataAccess.QueryPart" partType="CUSTOMWHERE">
+    <![CDATA[]]>
+  </query>
+
+
+</queries>

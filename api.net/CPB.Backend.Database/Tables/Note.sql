@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[CPB_Note]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Title] NVARCHAR(50) NOT NULL, 
+    [Description] NVARCHAR(50) NULL, 
+    [UserId] INT NOT NULL, 
+    CONSTRAINT [FK_CPB_Note_User] FOREIGN KEY ([UserId]) REFERENCES [CPB_User]([Id])
+)
