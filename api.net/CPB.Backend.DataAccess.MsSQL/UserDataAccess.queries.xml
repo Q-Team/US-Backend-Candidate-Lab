@@ -6,11 +6,11 @@
   </query>
   <query name="UserDataAccess.Update">
     <![CDATA[UPDATE CPB_User
-                SET Password = @Password, FirstName = @FirstName, LastName = @LastName
-              WHERE Id = @Id AND UserName = @UserName]]>
+                SET UserName = @UserName, Password = @Password, FirstName = @FirstName, LastName = @LastName
+              WHERE Id = @Id]]>
   </query>
   <query name="UserDataAccess.Delete">
-    <![CDATA[DELETE FROM CPB_User WHERE Id = @Id AND UserName = @UserName]]>
+    <![CDATA[DELETE FROM CPB_User WHERE Id = @Id]]>
   </query>
   <query name="UserDataAccess.DeleteAll">
     <![CDATA[DELETE FROM CPB_User]]>
@@ -26,7 +26,7 @@
     <![CDATA[       FROM CPB_User BU ]]>
   </query>
   <query name="UserDataAccess.QueryPart" partType="WHERE">
-    <![CDATA[      WHERE Id = @Id AND UserName = @UserName]]>
+    <![CDATA[      WHERE Id = @Id]]>
   </query>
   <query name="UserDataAccess.QueryPart" partType="GETBYCODE">
     <![CDATA[      WHERE BU.COMPLETAR_LA_PK_LOGICA = @Code]]>
@@ -37,6 +37,16 @@
   <query name="UserDataAccess.QueryPart" partType="CUSTOMWHERE">
     <![CDATA[]]>
   </query>
-
+  <query name="UserDataAccess.GetUserByName">
+    <![CDATA[
+      SELECT BU.Id, 
+                    BU.UserName, 
+                    BU.Password, 
+                    BU.FirstName, 
+                    BU.LastName
+      FROM CPB_User BU  
+      WHERE BU.UserName = @userName
+    ]]>
+  </query>
 
 </queries>

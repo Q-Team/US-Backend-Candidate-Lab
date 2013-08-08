@@ -5,6 +5,9 @@ using Q.Common.DTO.Queries;
 using Q.Common.Configurations;
 using CPB.Backend.Common.Entities;
 using CPB.Backend.DataAccess.DBMappers;
+using Q.DataAccess.Utils;
+using System.Data.Common;
+using System.Data;
 
 namespace CPB.Backend.DataAccess
 {
@@ -39,6 +42,23 @@ namespace CPB.Backend.DataAccess
         #endregion
 
         #region -- Public Methods --
+
+        public User GetUserByName(string userName)
+        {
+            User result = new User();
+
+            string sqlText = DataAccessHelper.GetQuery("UserDataAccess.GetUserByName");
+            using (DbCommand command = base.GetSqlStringCommand(sqlText))
+            {
+                DBMapperHelper.AddInParameter<string>(this, command, "userName", userName);
+                using (IDataReader reader = base.ExecuteReader(command))
+                {
+                    result = DBMapperHelper.Read<User>(reader, mapper);
+                }
+            }
+
+            return result;
+        }
 
         #endregion
 

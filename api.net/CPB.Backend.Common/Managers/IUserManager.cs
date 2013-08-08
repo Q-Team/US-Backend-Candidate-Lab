@@ -9,5 +9,6 @@ namespace CPB.Backend.Common.Managers
 {
     public interface IUserManager : IBaseManager<User, BaseQueryFilters>
     {
+        User GetUserByName(string userName);
     }
 }

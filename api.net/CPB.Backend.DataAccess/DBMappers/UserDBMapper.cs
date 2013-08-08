@@ -69,16 +69,12 @@ namespace CPB.Backend.DataAccess.DBMappers
 
         public override void AddDeleteParameters(QDatabase database, DbCommand command, object id)
         {
-            User entity = (User)id;
-            DBMapperHelper.AddInParameter<Int32>(database, command, "Id", entity.Id);
-            DBMapperHelper.AddInParameter<String>(database, command, "UserName", entity.UserName);
+            DBMapperHelper.AddInParameter<Int32>(database, command, "Id", Convert.ToInt32(id.ToString()));
         }
 
         public override void AddGetByIdParameters(QDatabase database, DbCommand command, object id)
         {
-            User entity = (User)id;
-            DBMapperHelper.AddInParameter<Int32>(database, command, "Id", entity.Id);
-            DBMapperHelper.AddInParameter<String>(database, command, "UserName", entity.UserName);
+            DBMapperHelper.AddInParameter<Int32>(database, command, "Id", Convert.ToInt32(id.ToString()));
         }
 
         #endregion

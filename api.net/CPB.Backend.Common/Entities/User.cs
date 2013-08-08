@@ -62,14 +62,13 @@ namespace CPB.Backend.Common.Entities
         {
             get
             {
-                return Id.ToString() + '|' + UserName.ToString();
+                return Id.ToString();
             }
         }
 
         public virtual void SetBaseEntityID(string id)
         {
             this.Id = Int32.Parse(id.Split('|')[0]);
-            this.UserName = id.Split('|')[1];
 
         }
 
@@ -77,7 +76,7 @@ namespace CPB.Backend.Common.Entities
         {
             get
             {
-                return this.Id > 0 && !string.IsNullOrEmpty(this.UserName);
+                return this.Id > 0;
             }
         }
 

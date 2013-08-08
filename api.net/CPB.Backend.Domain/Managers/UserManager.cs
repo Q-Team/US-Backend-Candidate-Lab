@@ -26,6 +26,11 @@ namespace CPB.Backend.Domain.Managers
 
         #region -- Public Methods --
 
+        public User GetUserByName(string userName)
+        {
+            return this.DAC.GetUserByName(userName);
+        }
+
         #endregion
 
         #region -- Private Methods --
