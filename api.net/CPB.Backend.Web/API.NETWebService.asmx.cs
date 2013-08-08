@@ -142,7 +142,7 @@ namespace CPB.Backend.Web
         /// <returns></returns>
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public Note UpdateUser(int userId, Note note)
+        public Note UpdateNote(int userId, Note note)
         {
             Note result = null;
             using (NoteManager manager = new NoteManager())
