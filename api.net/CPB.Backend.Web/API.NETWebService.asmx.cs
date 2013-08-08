@@ -50,7 +50,7 @@ namespace CPB.Backend.Web
             User result = null;
 
             /// Validte user and password, to update.
-            if (ValidateUser(user.UserName, user.Password))
+            if (ValidateUser(user.UserName, user.Password) != null)
             {
                 using (UserManager manager = new UserManager())
                 {
