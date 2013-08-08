@@ -45,7 +45,7 @@ namespace CPB.Backend.DataAccess
 
         public User GetUserByName(string userName)
         {
-            User result = new User();
+            User result = null;
 
             string sqlText = DataAccessHelper.GetQuery("UserDataAccess.GetUserByName");
             using (DbCommand command = base.GetSqlStringCommand(sqlText))
@@ -60,10 +60,29 @@ namespace CPB.Backend.DataAccess
             return result;
         }
 
+        public User ValidateUser(string userName, string password)
+        {
+            User result = null;
+
+            string sqlText = DataAccessHelper.GetQuery("UserDataAccess.ValidateUser");
+            using (DbCommand command = base.GetSqlStringCommand(sqlText))
+            {
+                DBMapperHelper.AddInParameter<string>(this, command, "userName", userName);
+                DBMapperHelper.AddInParameter<string>(this, command, "password", password);
+                using (IDataReader reader = base.ExecuteReader(command))
+                {
+                    result = DBMapperHelper.Read<User>(reader, mapper);
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region -- Private Methods --
 
         #endregion
+        
     }
 }

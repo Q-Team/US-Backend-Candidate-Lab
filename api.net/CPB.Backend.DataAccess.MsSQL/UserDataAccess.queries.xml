@@ -48,5 +48,17 @@
       WHERE BU.UserName = @userName
     ]]>
   </query>
-
+  <query name="UserDataAccess.ValidateUser">
+    <![CDATA[
+      SELECT BU.Id, 
+                    BU.UserName, 
+                    BU.Password, 
+                    BU.FirstName, 
+                    BU.LastName
+      FROM CPB_User BU  
+      WHERE BU.UserName = @userName 
+        AND BU.Password = @password
+    ]]>
+  </query>
+  
 </queries>

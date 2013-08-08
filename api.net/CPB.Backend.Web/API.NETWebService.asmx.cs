@@ -19,10 +19,68 @@ namespace CPB.Backend.Web
     // [System.Web.Script.Services.ScriptService]
     public class API_NETWebService : System.Web.Services.WebService
     {
+        #region -- User Methods --
+
         [WebMethod]
-        public string HelloWorld()
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public User CreateUser(User user)
         {
-            return "Hello World";
+            User result = new User();
+            using (UserManager manager = new UserManager())
+            {
+                result = manager.Create(user);
+            }
+            return result;
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public User UpdateUser(User user)
+        {
+            User result = new User();
+            using (UserManager manager = new UserManager())
+            {
+                result = manager.Update(user);
+            }
+            return result;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public User GetUserByName(string userName)
+        {
+            User result = new User();
+            using (UserManager manager = new UserManager())
+            {
+                result = manager.GetUserByName(userName);
+            }
+            return result;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public User GetUserById(int userId)
+        {
+            User result = new User();
+            using (UserManager manager = new UserManager())
+            {
+                result = manager.GetById(userId);
+            }
+            return result;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public User ValidateUser(string userName, string password)
+        {
+            User result = new User();
+            using (UserManager manager = new UserManager())
+            {
+                result = manager.ValidateUser(userName, password);
+            }
+            return result;
+        }
+
+        #endregion -- User Methods --
     }
 }

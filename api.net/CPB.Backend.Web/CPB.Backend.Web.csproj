@@ -107,6 +107,10 @@
       <Project>{7f990494-5a7e-45e8-be85-4c6ee74326f3}</Project>
       <Name>CPB.Backend.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CPB.Backend.DataAccess\CPB.Backend.DataAccess.csproj">
+      <Project>{0889604a-d39d-454e-a9c6-0f3f8ca62f39}</Project>
+      <Name>CPB.Backend.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CPB.Backend.Domain\CPB.Backend.Domain.csproj">
       <Project>{11007e8b-e053-4871-ad23-fbee9ad59795}</Project>
       <Name>CPB.Backend.Domain</Name>

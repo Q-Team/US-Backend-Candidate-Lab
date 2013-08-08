@@ -31,10 +31,16 @@ namespace CPB.Backend.Domain.Managers
             return this.DAC.GetUserByName(userName);
         }
 
+        public User ValidateUser(string userName, string password)
+        {
+            return this.DAC.ValidateUser(userName, password);
+        }
+
         #endregion
 
         #region -- Private Methods --
 
         #endregion
+        
     }
 }
