@@ -125,6 +125,18 @@ namespace CPB.Backend.Web
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public List<Note> SearchNotes(int userId, string searchValue)
+        {
+            List<Note> result = null;
+            using (NoteManager manager = new NoteManager())
+            {
+                result = manager.SearchNotes(userId, searchValue);
+            }
+            return result;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public bool DeleteNote(int userId, Note note)
         {
             bool result = false;

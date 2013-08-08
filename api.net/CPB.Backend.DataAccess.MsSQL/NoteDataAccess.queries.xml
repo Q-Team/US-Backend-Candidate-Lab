@@ -37,7 +37,7 @@
   <query name="NoteDataAccess.QueryPart" partType="CUSTOMWHERE">
     <![CDATA[]]>
   </query>
-  <query name="UserDataAccess.ValidateNoteOwner">
+  <query name="NoteDataAccess.ValidateNoteOwner">
     <![CDATA[
       SELECT BN.Id, 
                     BN.Title, 
@@ -45,6 +45,17 @@
                     BN.UserId
       FROM CPB_Note BN   
       WHERE BN.Id = @noteId
+        AND BN.UserId = @userId 
+    ]]>
+  </query>
+  <query name="NoteDataAccess.SearchNotes">
+    <![CDATA[
+      SELECT BN.Id, 
+                    BN.Title, 
+                    BN.Description, 
+                    BN.UserId
+      FROM CPB_Note BN   
+      WHERE BN.Title LIKE @searchValue
         AND BN.UserId = @userId 
     ]]>
   </query>

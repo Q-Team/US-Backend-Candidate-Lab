@@ -8,6 +8,7 @@ using CPB.Backend.DataAccess.DBMappers;
 using Q.DataAccess.Utils;
 using System.Data.Common;
 using System.Data;
+using System.Collections.Generic;
 
 namespace CPB.Backend.DataAccess
 {
@@ -47,7 +48,7 @@ namespace CPB.Backend.DataAccess
         {
             bool result = false;
 
-            string sqlText = DataAccessHelper.GetQuery("UserDataAccess.ValidateNoteOwner");
+            string sqlText = DataAccessHelper.GetQuery("NoteDataAccess.ValidateNoteOwner");
             using (DbCommand command = base.GetSqlStringCommand(sqlText))
             {
                 DBMapperHelper.AddInParameter<int>(this, command, "userId", userId);
@@ -62,10 +63,29 @@ namespace CPB.Backend.DataAccess
             return result;
         }
 
+        public List<Note> SearchNotes(int userId, string searchValue)
+        {
+            List<Note> result = null;
+
+            string sqlText = DataAccessHelper.GetQuery("NoteDataAccess.SearchNotes");
+            using (DbCommand command = base.GetSqlStringCommand(sqlText))
+            {
+                DBMapperHelper.AddInParameter<int>(this, command, "userId", userId);
+                DBMapperHelper.AddInParameter<string>(this, command, "searchValue", string.Format("%{0}%", searchValue));
+                using (IDataReader reader = base.ExecuteReader(command))
+                {
+                    DBMapperHelper.ReadToEnd<Note>(reader, mapper.BuildEntity);
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region -- Private Methods --
 
         #endregion
+
     }
 }

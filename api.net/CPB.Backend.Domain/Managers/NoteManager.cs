@@ -6,6 +6,7 @@ using Q.DataAccess;
 using CPB.Backend.Common.Entities;
 using CPB.Backend.Common.Managers;
 using CPB.Backend.DataAccess;
+using System.Collections.Generic;
 
 namespace CPB.Backend.Domain.Managers
 {
@@ -31,10 +32,16 @@ namespace CPB.Backend.Domain.Managers
             return this.DAC.ValidateNoteOwner(userId, noteId);
         }
 
+        public List<Note> SearchNotes(int userId, string searchValue)
+        {
+            return this.DAC.SearchNotes(userId, searchValue);
+        }
+
         #endregion
 
         #region -- Private Methods --
 
         #endregion
+        
     }
 }
