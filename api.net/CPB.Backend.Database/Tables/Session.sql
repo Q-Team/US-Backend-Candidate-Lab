@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[CPB_Session]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [UserId] INT NOT NULL, 
+    [LogInDate] DATETIME NOT NULL DEFAULT GETDATE(), 
+	CONSTRAINT [UK_CPB_Session_UserId] UNIQUE ([UserId]),
+    CONSTRAINT [FK_CPB_Session_User] FOREIGN KEY ([UserId]) REFERENCES [CPB_User]([Id])
+)

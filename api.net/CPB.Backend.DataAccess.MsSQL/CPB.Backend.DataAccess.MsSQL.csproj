@@ -36,6 +36,7 @@
   <ItemGroup>
     <EmbeddedResource Include="UserDataAccess.queries.xml" />
     <EmbeddedResource Include="NoteDataAccess.queries.xml" />
+<EmbeddedResource Include="SessionDataAccess.queries.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

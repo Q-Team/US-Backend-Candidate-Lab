@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<queries GenerateSelects="yes">
+  <query name="SessionDataAccess.Create">
+    <![CDATA[INSERT INTO CPB_Session ( Id,  UserId,  LogInDate)
+                                VALUES (@Id, @UserId, @LogInDate)]]>
+  </query>
+  <query name="SessionDataAccess.Update">
+    <![CDATA[UPDATE CPB_Session
+                SET UserId = @UserId, LogInDate = @LogInDate
+              WHERE Id = @Id]]>
+  </query>
+  <query name="SessionDataAccess.Delete">
+    <![CDATA[DELETE FROM CPB_Session WHERE Id = @Id]]>
+  </query>
+  <query name="SessionDataAccess.DeleteAll">
+    <![CDATA[DELETE FROM CPB_Session]]>
+  </query>
+  <query name="SessionDataAccess.QueryPart" partType="SELECT">
+    <![CDATA[SELECT BS.Id, 
+                    BS.UserId, 
+                    BS.LogInDate]]>
+  </query>
+  <query name="SessionDataAccess.QueryPart" partType="FROM">
+    <![CDATA[       FROM CPB_Session BS ]]>
+  </query>
+  <query name="SessionDataAccess.QueryPart" partType="WHERE">
+    <![CDATA[      WHERE Id = @Id]]>
+  </query>
+  <query name="SessionDataAccess.QueryPart" partType="GETBYCODE">
+    <![CDATA[      WHERE BS.Id = @Code]]>
+  </query>
+  <query name="SessionDataAccess.QueryPart" partType="GETBYPARENTID">
+    <![CDATA[      WHERE BS.UserId = @ParentId]]>
+  </query>
+  <query name="SessionDataAccess.QueryPart" partType="CUSTOMWHERE">
+    <![CDATA[]]>
+  </query>
+  <query name="SessionDataAccess.IsUserOnline">
+    <![CDATA[
+        SELECT BS.Id, 
+                    BS.UserId, 
+                    BS.LogInDate
+        FROM CPB_Session BS
+        WHERE BS.UserId = @userId AND DATEADD(hh,1,BS.LogInDate) >= GETDATE()
+    ]]>
+  </query>
+</queries>

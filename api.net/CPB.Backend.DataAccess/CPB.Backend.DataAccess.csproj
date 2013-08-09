@@ -87,6 +87,8 @@
     <Compile Include="DBMappers\UserDBMapper.cs" />
     <Compile Include="NoteDataAccess.cs" />
     <Compile Include="DBMappers\NoteDBMapper.cs" />
+<Compile Include="SessionDataAccess.cs" />
+<Compile Include="DBMappers\SessionDBMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
