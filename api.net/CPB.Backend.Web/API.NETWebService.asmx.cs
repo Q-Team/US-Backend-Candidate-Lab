@@ -18,6 +18,73 @@ namespace CPB.Backend.Web
     [System.Web.Script.Services.ScriptService]
     public class API_NETWebService : System.Web.Services.WebService
     {
+        #region -- Session Methods --
+
+        /// <summary>
+        /// Log in User. Validate user and password. If OK, return session id.
+        /// </summary>
+        /// <param name="user">User to log in</param>
+        /// <returns></returns>
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public Guid? LogIn(User user)
+        {
+            Guid? sessionId = null;
+
+            /// Validate user and password, to login.
+            if (ValidateUser(user.UserName, user.Password) != null)
+            {
+                using (SessionManager manager = new SessionManager())
+                {
+                    sessionId = manager.LogInUser(user);
+                }
+            }
+
+            return sessionId;
+        }
+
+        /// <summary>
+        /// Log off User. Delete session.
+        /// </summary>
+        /// <param name="user">User to log off</param>
+        /// <returns></returns>
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool LogOff(Guid session)
+        {
+            bool result = false;
+            using (SessionManager manager = new SessionManager())
+            {
+                result = manager.Delete(session);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Validate user and password. If OK, check if the user session is not expired (1 hour after login).
+        /// </summary>
+        /// <param name="user">User to check</param>
+        /// <returns></returns>
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool SessionOnline(User user)
+        {
+            bool result = false;
+            
+            /// Validate user and password, to login.
+            if (ValidateUser(user.UserName, user.Password) != null)
+            {
+                using (SessionManager manager = new SessionManager())
+                {
+                    result = manager.IsUserOnline(user);
+                }
+            }
+
+            return result;
+        }
+
+        #endregion -- Session Methods --
+
         #region -- User Methods --
 
         /// <summary>
